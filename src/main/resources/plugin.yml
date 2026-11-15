@@ -1,0 +1,15 @@
+name: RustlandKillMoney
+version: '1.0.0'
+main: br.rustland.killmoney.KillMoneyPlugin
+api-version: '1.21'
+description: Dinheiro por kill com valor decrescente no mesmo jogador, sem pagar kill dentro do mesmo clan
+softdepend: [zMClans, Essentials]
+
+commands:
+  killmoney:
+    description: Comando do RustlandKillMoney
+    usage: /killmoney reload
+
+permissions:
+  killmoney.admin:
+    default: op

@@ -1,0 +1,28 @@
+# RustlandKillMoney - config
+
+# Valor pago por kill no MESMO jogador, na ordem:
+# 1a kill = 200, 2a = 100, 3a = 75, 4a = 50, 5a = 25. Da 6a em diante paga 0.
+amounts:
+  - 200
+  - 100
+  - 75
+  - 50
+  - 25
+
+# Minutos de espera. Depois da ultima kill PAGA naquele jogador, a contagem
+# so volta ao inicio (200 de novo) quando passar este tempo.
+# Kills que pagam 0 nao aumentam a espera.
+reset-minutes: 40
+
+# Comando executado pelo console. %player% = quem matou, %amount% = valor.
+command: "eco give %player% %amount%"
+
+# Mensagem para quem matou (deixe "" para nao mostrar nada).
+# Nao mostra quantas vezes matou o jogador.
+message: "&a+$%amount% &7por matar &f%victim%"
+
+# Kill entre jogadores do mesmo clan do zMClans nao paga nada.
+block-same-clan: true
+
+# Mundos onde nao paga (ex.: "duels").
+excluded-worlds: []
