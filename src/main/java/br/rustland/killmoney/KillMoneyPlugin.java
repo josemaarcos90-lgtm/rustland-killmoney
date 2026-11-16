@@ -25,6 +25,8 @@ public final class KillMoneyPlugin extends JavaPlugin implements Listener {
 
     private RewardTracker tracker;
     private ClanHook clans;
+    private DailyManager daily;
+    private AirdropManager airdrops;
     private File dataFile;
 
     private String command = "eco give %player% %amount%";
@@ -40,14 +42,26 @@ public final class KillMoneyPlugin extends JavaPlugin implements Listener {
         loadSettings();
         loadData();
         clans = new ClanHook(this);
+        daily = new DailyManager(this);
+        daily.reload();
+        daily.loadData();
         getServer().getPluginManager().registerEvents(this, this);
-        long fiveMinutes = 20L * 60L * 5L;
-        getServer().getScheduler().runTaskTimerAsynchronously(this, this::saveData, fiveMinutes, fiveMinutes);
+        getServer().getPluginManager().registerEvents(daily, this);
+        airdrops = new AirdropManager(this);
+        getServer().getPluginManager().registerEvents(airdrops, this);
+        airdrops.start();
+        long oneMinute = 20L * 60L;
+        getServer().getScheduler().runTaskTimerAsynchronously(this, () -> {
+            saveData();
+            daily.saveIfDirty();
+        }, oneMinute, oneMinute);
     }
 
     @Override
     public void onDisable() {
         saveData();
+        daily.saveNow();
+        airdrops.stop();
     }
 
     private void loadSettings() {
@@ -124,6 +138,23 @@ public final class KillMoneyPlugin extends JavaPlugin implements Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("daily")) {
+            if (!(sender instanceof Player player)) {
+                sender.sendMessage("Esse comando e so para jogadores.");
+                return true;
+            }
+            if (args.length >= 1 && args[0].equalsIgnoreCase("claim")) {
+                daily.claim(player);
+            } else {
+                daily.openMenu(player);
+            }
+            return true;
+        }
+
+        if (cmd.getName().equalsIgnoreCase("airdrop")) {
+            return airdrops.onCommand(sender, args);
+        }
+
         if (!sender.hasPermission("killmoney.admin")) {
             sender.sendMessage("Sem permissao.");
             return true;
@@ -131,6 +162,8 @@ public final class KillMoneyPlugin extends JavaPlugin implements Listener {
         if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
             reloadConfig();
             loadSettings();
+            daily.reload();
+            airdrops.reload();
             sender.sendMessage("RustlandKillMoney recarregado.");
             return true;
         }

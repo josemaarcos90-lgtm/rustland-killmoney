@@ -1,0 +1,104 @@
+# Air Drops - Rustland
+# Um bau cai em local aleatorio, com uma raridade sorteada.
+
+enabled: true
+
+# Horarios (24h) no fuso abaixo. 3 por dia.
+timezone: America/Sao_Paulo
+times:
+  - "13:00"
+  - "18:00"
+  - "22:00"
+
+# So cai se tiver pelo menos esta quantidade de jogadores online.
+min-players: 1
+
+# Mundo e distancia do spawn (em blocos)
+world: world
+radius-min: 150
+radius-max: 1500
+
+# Minutos ate o bau sumir se ninguem esvaziar
+despawn-minutes: 30
+
+# Raridades. weight = chance relativa de ser sorteada.
+# rolls = quantos itens entram no bau (sorteio por peso na lista "loot").
+# loot: "MATERIAL quantidade [peso] [ENCANTO=nivel,ENCANTO=nivel]"
+# open-commands: executados UMA vez, para quem abrir primeiro (%player%).
+tiers:
+  common:
+    name: "COMUM"
+    color: "&f"
+    weight: 55
+    rolls: "3-5"
+    open-commands:
+      - "eco give %player% 100"
+    loot:
+      - "COOKED_BEEF 6-16 20"
+      - "BREAD 8-20 15"
+      - "COAL 8-24 15"
+      - "COPPER_INGOT 8-24 10"
+      - "IRON_INGOT 4-12 15"
+      - "GOLD_INGOT 2-6 8"
+      - "ARROW 16-48 10"
+  uncommon:
+    name: "INCOMUM"
+    color: "&a"
+    weight: 28
+    rolls: "4-6"
+    open-commands:
+      - "eco give %player% 250"
+    loot:
+      - "IRON_INGOT 8-20 15"
+      - "GOLD_INGOT 4-10 12"
+      - "REDSTONE 12-32 10"
+      - "LAPIS_LAZULI 8-24 8"
+      - "DIAMOND 1-3 8"
+      - "GOLDEN_APPLE 1-2 6"
+      - "EXPERIENCE_BOTTLE 4-12 8"
+  rare:
+    name: "RARO"
+    color: "&9"
+    weight: 14
+    rolls: "5-7"
+    open-commands:
+      - "eco give %player% 500"
+    loot:
+      - "DIAMOND 3-8 15"
+      - "EMERALD 4-12 10"
+      - "GOLDEN_APPLE 2-4 10"
+      - "ENDER_PEARL 2-6 8"
+      - "EXPERIENCE_BOTTLE 12-32 8"
+      - "IRON_CHESTPLATE 1 5 PROTECTION=2,UNBREAKING=2"
+      - "DIAMOND_SWORD 1 3 SHARPNESS=3,UNBREAKING=2"
+  epic:
+    name: "ÉPICO"
+    color: "&5"
+    weight: 3
+    rolls: "6-9"
+    open-commands:
+      - "eco give %player% 1000"
+    loot:
+      - "DIAMOND 8-16 12"
+      - "NETHERITE_SCRAP 1-3 8"
+      - "ENCHANTED_GOLDEN_APPLE 1-2 6"
+      - "TOTEM_OF_UNDYING 1 4"
+      - "DIAMOND_CHESTPLATE 1 4 PROTECTION=4,UNBREAKING=3,MENDING=1"
+      - "DIAMOND_SWORD 1 4 SHARPNESS=5,UNBREAKING=3,MENDING=1"
+      - "NETHERITE_INGOT 1 2"
+
+# Mensagens. Variaveis: %tier% %color% %x% %y% %z% %minutes% %time% %player% %next%
+messages:
+  announce:
+    - "&8&m-------------------------------"
+    - "&6&l✦ AIRDROP %color%&l%tier% &6&lCAIU!"
+    - "&7Coordenadas: &fX: %x%  Y: %y%  Z: %z%"
+    - "&7Some em &f%minutes% minutos&7. Corra!"
+    - "&8&m-------------------------------"
+  title: "&6&lAIRDROP %color%&l%tier%"
+  subtitle: "&fX: %x%  Y: %y%  Z: %z%"
+  opened: "&e%player% &7abriu o airdrop %color%%tier%&7!"
+  ended-empty: "&7O airdrop %color%%tier% &7foi esvaziado."
+  ended-time: "&7O airdrop %color%%tier% &7sumiu."
+  none: "&7Nenhum airdrop ativo agora. Proximo: &f%next%"
+  active: "&6Airdrop %color%%tier% &6em &fX: %x% Y: %y% Z: %z% &7(%time% restantes)"

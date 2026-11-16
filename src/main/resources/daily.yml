@@ -1,0 +1,50 @@
+# Recompensa diaria de 7 dias - /daily
+# O dia troca a meia-noite neste fuso horario:
+timezone: America/Sao_Paulo
+
+menu-title: "&6&lRecompensa Diaria"
+
+# Cada dia tem: display (texto mostrado), icon (item do menu) e commands
+# (executados pelo console; %player% = nome do jogador).
+# Exemplo de item: "give %player% minecraft:diamond 3"
+rewards:
+  day1:
+    display: "$100"
+    icon: COPPER_INGOT
+    commands:
+      - "eco give %player% 100"
+  day2:
+    display: "$150"
+    icon: IRON_INGOT
+    commands:
+      - "eco give %player% 150"
+  day3:
+    display: "$200"
+    icon: GOLD_INGOT
+    commands:
+      - "eco give %player% 200"
+  day4:
+    display: "$250"
+    icon: EMERALD
+    commands:
+      - "eco give %player% 250"
+  day5:
+    display: "$300"
+    icon: DIAMOND
+    commands:
+      - "eco give %player% 300"
+  day6:
+    display: "$400"
+    icon: NETHERITE_SCRAP
+    commands:
+      - "eco give %player% 400"
+  day7:
+    display: "$600"
+    icon: ENDER_CHEST
+    commands:
+      - "eco give %player% 600"
+
+messages:
+  claimed: "&a✔ Recompensa do dia %day% coletada! &7(%reward%)"
+  already: "&cVoce ja coletou hoje. Volte amanha!"
+  reminder: "&6Voce tem uma recompensa diaria para coletar! Use &e/daily"
