@@ -174,6 +174,7 @@ final class AirdropManager implements Listener {
             plugin.saveResource("airdrop.yml", false);
         }
         YamlConfiguration c = YamlConfiguration.loadConfiguration(configFile);
+        addMissingDefaults(c);
         cfg = c;
         try {
             zone = ZoneId.of(c.getString("timezone", "America/Sao_Paulo"));
@@ -212,6 +213,35 @@ final class AirdropManager implements Listener {
                     c.getString(base + "icon", "CHEST")));
         }
         tiers = map;
+    }
+
+    /** Copia para o airdrop.yml as chaves novas que ele ainda nao tem (config de versao antiga). */
+    private void addMissingDefaults(YamlConfiguration c) {
+        java.io.InputStream in = plugin.getResource("airdrop.yml");
+        if (in == null) {
+            return;
+        }
+        boolean changed = false;
+        try (java.io.Reader r = new java.io.InputStreamReader(in, java.nio.charset.StandardCharsets.UTF_8)) {
+            YamlConfiguration def = YamlConfiguration.loadConfiguration(r);
+            for (String key : def.getKeys(true)) {
+                if (def.isConfigurationSection(key) || c.contains(key)) {
+                    continue;
+                }
+                c.set(key, def.get(key));
+                changed = true;
+            }
+        } catch (IOException ex) {
+            plugin.getLogger().warning("Nao consegui ler o airdrop.yml padrao: " + ex.getMessage());
+        }
+        if (changed) {
+            try {
+                c.save(configFile);
+                plugin.getLogger().info("airdrop.yml atualizado com as opcoes novas.");
+            } catch (IOException ex) {
+                plugin.getLogger().warning("Nao consegui salvar airdrop.yml: " + ex.getMessage());
+            }
+        }
     }
 
     void start() {
