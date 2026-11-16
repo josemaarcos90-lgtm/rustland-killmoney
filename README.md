@@ -37,7 +37,16 @@ Dinheiro por kill de jogador (usa `eco give` do EssentialsX, a mesma economia do
 - Quem abrir primeiro ganha um bonus em dinheiro (por raridade). O bau some quando
   esvaziado ou apos 30 minutos.
 - Placeholders para o TAB: `%rustland_airdrop_active%`, `_tier`, `_tier_color`, `_x`, `_y`,
-  `_z`, `_coords`, `_time_left`, `_status`, `_next`.
+  `_z`, `_coords`, `_time_left`, `_time_label` ("Cai em"/"Some em"), `_phase`, `_buyer`, `_status`, `_next`.
 - `/airdrop` mostra o status. Admin (`killmoney.admin`): `/airdrop spawn [common|uncommon|rare|epic]`,
   `/airdrop end`, `/airdrop reload`.
+
+### Comprar airdrop
+
+- `/airdrop buy` abre o menu (clique 2x para confirmar). `/airdrop buy <common|uncommon|rare|epic>` compra direto.
+- Cobra pela economia do Vault (a mesma do /bal). Precos em `airdrop.yml` > `tiers.<raridade>.price`.
+- Todos veem no chat e na tela quem comprou e as coordenadas. Depois de 5 minutos o bau cai
+  onde o jogador estava (aviso extra 1 minuto antes). O scoreboard mostra tipo, coordenadas e contagem.
+- So um airdrop por vez. Se nao puder cair ou um admin encerrar antes, o dinheiro volta.
+- Efeito: feixe vermelho, anel de fogo girando, batimento ao redor e bola de fogo caindo nos ultimos 10 s.
 - Tudo configuravel em `plugins/RustlandKillMoney/airdrop.yml`.

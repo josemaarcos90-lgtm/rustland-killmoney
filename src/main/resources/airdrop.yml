@@ -21,6 +21,29 @@ radius-max: 1500
 # Minutos ate o bau sumir se ninguem esvaziar
 despawn-minutes: 30
 
+# ---- COMPRA DE AIRDROP (/airdrop buy) ----
+# O jogador paga (economia do Vault/Essentials) e o airdrop cai ONDE ELE ESTA
+# depois de delay-minutes. Os precos ficam em cada raridade (price). Preco 0 = nao vende.
+# Se o airdrop nao puder cair, ou um admin usar /airdrop end antes, o dinheiro e devolvido.
+# So um airdrop por vez (comprado ou automatico).
+buy:
+  enabled: true
+  delay-minutes: 5
+  confirm-seconds: 10
+  menu-title: "&8Comprar Airdrop"
+  lore:
+    - "&7Preco: &a$%price%"
+    - " "
+    - "&7Cai onde voce estiver em &f%delay% minutos&7."
+    - "&7Todos veem as coordenadas."
+    - " "
+    - "&eClique para comprar &7(clique 2x para confirmar)"
+
+# Efeitos visuais (vermelho)
+effects:
+  beam-height: 60      # altura do feixe vermelho
+  sound-range: 150     # blocos em que se ouve o batimento enquanto o airdrop cai
+
 # Raridades. weight = chance relativa de ser sorteada.
 # rolls = quantos itens entram no bau (sorteio por peso na lista "loot").
 # loot: "MATERIAL quantidade [peso] [ENCANTO=nivel,ENCANTO=nivel]"
@@ -31,6 +54,8 @@ tiers:
     color: "&f"
     weight: 55
     rolls: "3-5"
+    price: 2000
+    icon: "WHITE_SHULKER_BOX"
     open-commands:
       - "eco give %player% 100"
     loot:
@@ -46,6 +71,8 @@ tiers:
     color: "&a"
     weight: 28
     rolls: "4-6"
+    price: 5000
+    icon: "LIME_SHULKER_BOX"
     open-commands:
       - "eco give %player% 250"
     loot:
@@ -61,6 +88,8 @@ tiers:
     color: "&9"
     weight: 14
     rolls: "5-7"
+    price: 12000
+    icon: "BLUE_SHULKER_BOX"
     open-commands:
       - "eco give %player% 500"
     loot:
@@ -76,6 +105,8 @@ tiers:
     color: "&5"
     weight: 3
     rolls: "6-9"
+    price: 30000
+    icon: "PURPLE_SHULKER_BOX"
     open-commands:
       - "eco give %player% 1000"
     loot:
@@ -87,7 +118,7 @@ tiers:
       - "DIAMOND_SWORD 1 4 SHARPNESS=5,UNBREAKING=3,MENDING=1"
       - "NETHERITE_INGOT 1 2"
 
-# Mensagens. Variaveis: %tier% %color% %x% %y% %z% %minutes% %time% %player% %next%
+# Mensagens. Variaveis: %tier% %color% %x% %y% %z% %minutes% %time% %player% %next% %buyer% %price%
 messages:
   announce:
     - "&8&m-------------------------------"
@@ -102,3 +133,24 @@ messages:
   ended-time: "&7O airdrop %color%%tier% &7sumiu."
   none: "&7Nenhum airdrop ativo agora. Proximo: &f%next%"
   active: "&6Airdrop %color%%tier% &6em &fX: %x% Y: %y% Z: %z% &7(%time% restantes)"
+  status-incoming: "&cAirdrop %color%%tier% &ccomprado por &f%buyer% &ccai em &fX: %x% Y: %y% Z: %z% &7(em %time%)"
+  bought:
+    - "&8&m-------------------------------"
+    - "&c&l☄ AIRDROP COMPRADO!"
+    - "&f%buyer% &7comprou um airdrop %color%&l%tier%&7!"
+    - "&7Cai em &c%minutes% minutos &7em &fX: %x%  Y: %y%  Z: %z%"
+    - "&8&m-------------------------------"
+  bought-title: "&c&l☄ AIRDROP %color%&l%tier%"
+  bought-subtitle: "&f%buyer% &7- &fX: %x%  Y: %y%  Z: %z%"
+  warn-1min:
+    - "&c&l⚠ &cO airdrop %color%%tier% &ccai em &f1 minuto &cem &fX: %x%  Y: %y%  Z: %z%"
+  landing-failed: "&cO airdrop comprado por &f%buyer% &cnao conseguiu cair e o dinheiro foi devolvido."
+  refunded: "&aO airdrop foi cancelado e &f$%price% &afoi devolvido."
+  buy-confirm: "&eClique de novo para confirmar: airdrop %color%%tier% &epor &a$%price%&e."
+  buy-disabled: "&cA compra de airdrops esta desativada."
+  buy-unavailable: "&cEssa raridade nao esta a venda."
+  buy-busy: "&cJa existe um airdrop ativo ou a caminho. Espere ele acabar."
+  buy-wrong-world: "&cVoce so pode comprar airdrop no mundo principal."
+  buy-no-economy: "&cA economia do servidor nao esta disponivel agora."
+  buy-no-money: "&cVoce precisa de &f$%price% &cpara comprar esse airdrop."
+  buy-no-spot: "&cNao ha um lugar livre aqui para o airdrop cair. Va para um terreno aberto."

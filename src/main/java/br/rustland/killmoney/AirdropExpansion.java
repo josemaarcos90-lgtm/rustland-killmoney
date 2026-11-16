@@ -6,7 +6,7 @@ import org.bukkit.OfflinePlayer;
 /**
  * Placeholders do PlaceholderAPI, usados pelo scoreboard do TAB:
  * %rustland_airdrop_active%, _tier, _tier_color, _x, _y, _z, _coords,
- * _time_left, _status e _next.
+ * _time_left, _time_label, _phase, _buyer, _status e _next.
  */
 final class AirdropExpansion extends PlaceholderExpansion {
 
@@ -28,7 +28,7 @@ final class AirdropExpansion extends PlaceholderExpansion {
 
     @Override
     public String getVersion() {
-        return "1.2.0";
+        return "1.3.0";
     }
 
     @Override
