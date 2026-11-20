@@ -50,3 +50,9 @@ Dinheiro por kill de jogador (usa `eco give` do EssentialsX, a mesma economia do
 - So um airdrop por vez. Se nao puder cair ou um admin encerrar antes, o dinheiro volta.
 - Efeito: feixe vermelho, anel de fogo girando, batimento ao redor e bola de fogo caindo nos ultimos 10 s.
 - Tudo configuravel em `plugins/RustlandKillMoney/airdrop.yml`.
+
+## Kit inicial de PvP (/kit)
+
+- Entregue automaticamente no primeiro login; depois `/kit` (aliases `/kitpvp`, `/kitinicial`) a cada 3 horas,
+  para quem morreu e perdeu os itens.
+- Conteudo e tempo de espera em `plugins/RustlandKillMoney/kit.yml` (`/killmoney reload` ou `/kit reload`).

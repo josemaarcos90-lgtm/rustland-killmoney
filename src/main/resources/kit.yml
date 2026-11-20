@@ -1,0 +1,25 @@
+# Kit inicial de PvP - Rustland
+# Entregue automaticamente no PRIMEIRO login e com /kit (alias /kitpvp, /kitinicial)
+# para quem morreu e perdeu os itens. Cada jogador so pode pegar de novo depois do tempo abaixo.
+
+give-on-first-join: true
+cooldown-minutes: 180
+
+# MATERIAL [quantidade] [ENCANTO=nivel,ENCANTO=nivel]
+# Pecas de armadura vao direto para o corpo (se o espaco estiver livre).
+items:
+  - "IRON_SWORD 1"
+  - "IRON_HELMET 1"
+  - "IRON_CHESTPLATE 1"
+  - "IRON_LEGGINGS 1"
+  - "IRON_BOOTS 1"
+  - "SHIELD 1"
+  - "BOW 1"
+  - "ARROW 32"
+  - "COOKED_BEEF 16"
+  - "GOLDEN_APPLE 2"
+
+messages:
+  first-join: "&aBem-vindo ao Rustland! &7Voce recebeu o &fkit inicial de PvP&7. Se morrer, use &f/kit &7(a cada 3 horas)."
+  received: "&aVoce recebeu o kit de PvP!"
+  cooldown: "&cVoce ja pegou o kit. Tente de novo em &f%time%&c."

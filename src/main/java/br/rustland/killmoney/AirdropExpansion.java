@@ -28,7 +28,7 @@ final class AirdropExpansion extends PlaceholderExpansion {
 
     @Override
     public String getVersion() {
-        return "1.3.1";
+        return "1.4.0";
     }
 
     @Override
