@@ -28,6 +28,7 @@ public final class KillMoneyPlugin extends JavaPlugin implements Listener {
     private DailyManager daily;
     private AirdropManager airdrops;
     private KitManager kits;
+    private LobbyManager lobby;
     private File dataFile;
 
     private String command = "eco give %player% %amount%";
@@ -54,6 +55,9 @@ public final class KillMoneyPlugin extends JavaPlugin implements Listener {
         kits = new KitManager(this);
         getServer().getPluginManager().registerEvents(kits, this);
         kits.start();
+        lobby = new LobbyManager(this);
+        getServer().getPluginManager().registerEvents(lobby, this);
+        lobby.start();
         long oneMinute = 20L * 60L;
         getServer().getScheduler().runTaskTimerAsynchronously(this, () -> {
             saveData();
@@ -155,6 +159,10 @@ public final class KillMoneyPlugin extends JavaPlugin implements Listener {
             return true;
         }
 
+        if (cmd.getName().equalsIgnoreCase("lobby")) {
+            return lobby.onCommand(sender, args);
+        }
+
         if (cmd.getName().equalsIgnoreCase("kit")) {
             return kits.onCommand(sender, args);
         }
@@ -173,6 +181,7 @@ public final class KillMoneyPlugin extends JavaPlugin implements Listener {
             daily.reload();
             airdrops.reload();
             kits.reload();
+            lobby.reload();
             sender.sendMessage("RustlandKillMoney recarregado.");
             return true;
         }

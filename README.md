@@ -56,3 +56,13 @@ Dinheiro por kill de jogador (usa `eco give` do EssentialsX, a mesma economia do
 - Entregue automaticamente no primeiro login; depois `/kit` (aliases `/kitpvp`, `/kitinicial`) a cada 3 horas,
   para quem morreu e perdeu os itens.
 - Conteudo e tempo de espera em `plugins/RustlandKillMoney/kit.yml` (`/killmoney reload` ou `/kit reload`).
+
+## Lobby (/lobby, so admin)
+
+- Fique em pe no chao, no centro de onde quer o lobby, e use `/lobby paste rustic` (ou `stony`).
+- O plugin cola a praca redonda (61x61) no chao, nivela o terreno ao redor com uma rampa,
+  preenche embaixo para nada ficar flutuando e define o spawn do mundo na praca.
+- A area fica protegida: sem PvP, sem quebrar/colocar blocos (admin pode) e sem monstros. Veja `lobby.yml`.
+- `/lobby` mostra onde esta; `/lobby remove` tira so a protecao.
+- Construcao: "Small Circular Square" by BSLBuilds. Depois do paste, use `/setspawn` do Essentials no lugar onde
+  os jogadores devem aparecer.

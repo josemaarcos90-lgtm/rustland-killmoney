@@ -1,0 +1,18 @@
+# Lobby - Rustland
+# O lobby e colado com /lobby paste [rustic|stony] (so admin, em pe no centro de onde quer).
+# Depois disso a area fica protegida conforme abaixo.
+
+# Ninguem consegue bater em outro jogador dentro do lobby
+pvp-off: true
+
+# Jogadores comuns nao quebram nem colocam blocos (nem agua/lava com balde) no lobby. Admin pode.
+protect-blocks: true
+
+# Monstros nao nascem naturalmente no lobby
+block-hostile-spawns: true
+
+# Aumenta o raio da protecao alem da praca (em blocos). 0 = so a praca e a rampa.
+extra-radius: 0
+
+messages:
+  pvp-off: "&cPvP desativado no lobby."

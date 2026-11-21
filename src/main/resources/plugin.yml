@@ -1,5 +1,5 @@
 name: RustlandKillMoney
-version: '1.4.0'
+version: '1.5.0'
 main: br.rustland.killmoney.KillMoneyPlugin
 api-version: '1.21'
 description: Dinheiro por kill com valor decrescente no mesmo jogador, sem pagar kill dentro do mesmo clan
@@ -21,6 +21,9 @@ commands:
     description: Kit inicial de PvP
     usage: /kit
     aliases: [kitpvp, kitinicial]
+  lobby:
+    description: Cola o lobby e protege a area (admin)
+    usage: /lobby [paste [rustic|stony]|remove|reload]
 
 permissions:
   killmoney.admin:
